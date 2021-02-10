@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>E-28 Week 2 Game by Ekaterina Molchanova</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="js/js.js" defer></script>
+</head>
+
+<body>
+    <header>Hi-Low</header>
+    <main>
+        <p>I've got a number between <b>1</b> and <b>100</b> on my mind. Can you guess it?</p>
+        <div id="numberInput">
+            <label for name="userNumber">Insert your number here:</label>
+            <input type="number" name="userNumber" id="userNumber">
+            <input type="button" id="submitButton" value="Submit">
+        </div>
+
+        <div id="resultsMessage">
+            <div id="correctNumber">My number is <span id="printAnswer"></span> </div>
+            <div id="winMessage">You won! :-)</div>
+            <div id="tooHighMessage">Too high!</div>
+            <div id="tooLowMessage">Too low!</div>
+            <div id="youLostMessage">No more attempts left. You lost :-(</div>
+            <input type="button" id="tryAgain" value="Try Again">
+        </div>
+
+        <p>You have <span id="attemptsLeft">7</span> attempts left.</p>
+
+        <p>You've already tried these numbers: <span id="numbersUsed"></span></p>
+
+    </main>
+</body>
+
+</html>
