@@ -3,7 +3,6 @@
 (function () {
     //randomly chooses the number
     let answer = Math.ceil(Math.random() * 100);
-    console.log(answer);
     //gets the submit button from the page
     let submitButton = document.getElementById("submitButton");
     let tryAgain = document.getElementById("tryAgain");
