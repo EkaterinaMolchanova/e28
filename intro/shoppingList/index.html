@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vue.js Shopping</title>
+    <meta charset="utf-8" />
+    <link href="data:," rel="icon" />
+
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="js.js" defer></script>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+
+    <div id="app" v-cloak>
+        <input type="text" v-model.lazy="item" />
+        <button v-on:click="addItem()">Add</button>
+        <p v-if='!item'>You have no items on your list</p>
+        <p v-else>Item count {{ count }}</p>
+        <ul>
+            <li v-for="thisItem in items">{{ thisItem }}</li>
+        </ul>
+        <button v-if='item' v-on:click="resetList()">New list</button>
+    </div>
+</body>
+
+</html>
