@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
     <title>Vue.js Shopping</title>
-    <meta charset="utf-8" />
-    <link href="data:," rel="icon" />
+    <meta charset='utf-8' />
+    <link href='data:,' rel='icon' />
 
-    <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="js.js" defer></script>
+    <script src='https://unpkg.com/vue@next' defer></script>
+    <script src='js.js' defer></script>
 
     <style>
         [v-cloak] {
             display: none;
         }
+
+        div {
+            padding: 1em;
+        }
+
+        .noItems {
+            font-style: italic;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Shopping List</h1>
+    <div id='app' v-cloak>
 
-    <div id="app" v-cloak>
-        <input type="text" v-model.lazy="item" />
-        <button v-on:click="addItem()">Add</button>
-        <p v-if='!item'>You have no items on your list</p>
-        <p v-else>Item count {{ count }}</p>
-        <ul>
-            <li v-for="thisItem in items">{{ thisItem }}</li>
-        </ul>
-        <button v-if='item' v-on:click="resetList()">New list</button>
+        <h1>Shopping List</h1>
+
+        <label for='qty'>Qty:
+            <input type='text' id='qty' v-model.lazy.number='qty' size='5' /></label>
+        <label for='item'> Item:
+            <input type='text' id='item' v-model.lazy='item' v-on:keyup.enter='addItem' /></label>
+        <button v-on:click='addItem'>Add</button>
+        <div class='noItems' v-if='!items.length'>You have no items on your list.</div>
+        <div v-else>Item count: {{ count }}
+            <ul>
+                <li v-for='thisItem in items'>
+                    <button v-on:click='deleteItem(thisItem.name)'> x </button> {{ thisItem.qty}} x
+                    {{ thisItem.name }}
+                </li>
+            </ul>
+            <button v-on:click='resetList'>New list</button>
+        </div>
     </div>
 </body>
 

@@ -1,7 +1,7 @@
 const Game = {
     data() {
         return {
-            playerName: "",
+            playerName: '',
             mysteryNumber: Math.ceil(Math.random() * 100),
 
         };
@@ -14,4 +14,4 @@ const Game = {
     },
 };
 
-const app = Vue.createApp(Game).mount("#app");
+const app = Vue.createApp(Game).mount('#app');

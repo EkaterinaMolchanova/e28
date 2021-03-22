@@ -28,7 +28,6 @@
       <input type="text" v-model="guess" />
       <button v-on:click="addGuess()">Submit guess</button>
     </label>
-    <p>{{ guesses }}</p>
     <ul>
       <li v-for="thisGuess in guesses">{{ thisGuess }}</li>
     </ul>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
     <title>Ekaterina Molchanova P1</title>
-    <meta charset="utf-8" />
-    <link href="data:," rel="icon" />
+    <meta charset='utf-8' />
+    <link href='data:,' rel='icon' />
 
-    <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="script.js" defer></script>
+    <script src='https://unpkg.com/vue@next' defer></script>
+    <script src='script.js' defer></script>
 
     <style>
         [v-cloak] {
@@ -19,10 +19,11 @@
 <body>
     <h1>Hi-Low</h1>
 
-    <div id="app" v-cloak>
-        <label>What’s your name? <input type="text" v-model.lazy="playerName" /></label>
-        <button v-on:click="addName()">Start game</button>
-        <p v-if='playerName != ""'>Hello, {{ playerName }}</p>
+    <div id='app' v-cloak>
+        <label>What’s your name? <input type='text' v-model.lazy='playerName' v-on:keyup.enter='addName' /></label>
+        <button v-on:click='addName'>Start game</button>
+        <p v-if='playerName != "" '>Hello, {{ playerName }}</p>
+        <p>Can you guess the number from 1 to 100?</p>
     </div>
 </body>
 
