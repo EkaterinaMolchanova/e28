@@ -13,17 +13,53 @@
         [v-cloak] {
             display: none;
         }
+
+        .total {
+            font-size: 3em;
+            font-weight: 700;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Hi-Low</h1>
+    <h1>The 100 game</h1>
 
     <div id='app' v-cloak>
-        <label>What’s your name? <input type='text' v-model.lazy='playerName' v-on:keyup.enter='addName' /></label>
-        <button v-on:click='addName'>Start game</button>
-        <p v-if='playerName != "" '>Hello, {{ playerName }}</p>
-        <p>Can you guess the number from 1 to 100?</p>
+
+        <div v-if='!startGame'>
+            <label>What’s your name? <input type='text' v-model.lazy='playerName'
+                    v-on:keyup.enter='gameStarted' /></label>
+            <input type='button' v-on:click='gameStarted' value='Start game'></button>
+        </div>
+
+        <div v-else>
+            <p>Hello, {{ playerName }}</p>
+            <p>Let's play this simple game of 100. You and computer take turns adding numbers from 1 to 12. The one who
+                adds number to 100 loses.</p>
+
+            <div class='input' v-if='computerInputLast'>Previous input of the computer was
+                <span>{{computerInputLast}}</span></div>
+
+            <div class='total'>{{currentTotal}}</div>
+
+            <div class='input' v-if='userInputLast'>Previous {{playerName}}'s input was <span>{{userInputLast}}</span>
+            </div>
+
+            <label>Add a number to the total: <input type='text' v-model.number='userInput'
+                    v-on:keyup.enter='addNumber' /></label>
+            <input type='button' v-on:click='addNumber' value='Add number'></button>
+
+            <div v-if='gameOver' class='feedback' v-bind:class="{ user: win, computer: !win }">
+                <div v-if='win'>Congratulations! You won! </div>
+                <div v-else>Sorry, you lost.</div>
+                <button v-on:click='gameStarted'>Play again</button>
+            </div>
+
+
+
+
+
+        </div>
     </div>
 </body>
 
