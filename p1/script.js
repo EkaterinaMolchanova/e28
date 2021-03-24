@@ -48,6 +48,7 @@ const Game = {
             this.number++;
         },
         addNumber() {
+
             this.currentTotal += this.userInput;
 
             this.userInputLast = this.userInput;

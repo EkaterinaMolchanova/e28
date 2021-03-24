@@ -5,99 +5,85 @@
     <title>Ekaterina Molchanova P1</title>
     <meta charset='utf-8' />
     <link href='data:,' rel='icon' />
+    <link rel="stylesheet" href="styles.css">
+
 
     <script src='https://unpkg.com/vue@next' defer></script>
     <script src='script.js' defer></script>
 
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-
-        .total {
-            font-size: 3em;
-            font-weight: 700;
-        }
-
-        .feedback {
-            color: white;
-            font-weight: 700;
-            margin: 1em;
-        }
-
-        .user {
-            background-color: green;
-        }
-
-        .computer {
-            background-color: red;
-        }
-
-        .feedback div {
-            padding: 1em;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
     <h1>The 100 game</h1>
+    <main>
 
-    <div id='app' v-cloak>
+        <div id='app' v-cloak>
 
-        <div v-if='!startGame'>
-            <label>What’s your name? <input type='text' v-model.lazy='playerName'
-                    v-on:keyup.enter='gameStarted' /></label>
-            <input type='button' v-on:click='gameStarted' value='Start game'></button>
-        </div>
-
-        <div v-else>
-            <p>Hello, {{ playerName }}</p>
-            <p>Let's play this simple game of 100. You and computer take turns adding numbers from 1 to 12. The one who
-                adds number to 100 loses.</p>
-
-            <div class='input' v-if='computerInputLast'>Previous input of the computer was
-                <span>{{computerInputLast}}</span></div>
-
-            <div class='total'>{{currentTotal}}</div>
-
-            <div class='input' v-if='userInputLast'>Previous {{playerName}}'s input was <span>{{userInputLast}}</span>
+            <div v-if='!startGame'>
+                <label>What’s your name? <input type='text' v-model.lazy='playerName'
+                        v-on:keyup.enter='gameStarted' /></label>
+                <input type='button' class='submitButton' v-on:click='gameStarted' value='Start game'></button>
             </div>
 
-            <div v-if='!gameOver'>
-                <label>Add a number to the total: <input type='text' v-model.number='userInput'
-                        v-on:keyup.enter='addNumber' /></label>
-                <input type='button' v-on:click='addNumber' value='Add number'></button>
+            <div v-else>
+                <p>Hello, {{ playerName }}!</p>
+                <p>Let's play this simple game of 100.</p>
+                <p id="instructions">You and computer take turns adding numbers from
+                    1 to 12. The one
+                    who
+                    adds number to 100 loses.</p>
+
+                <div class='input' v-if='computerInputLast'>Previous input of the computer was
+                    <span>{{computerInputLast}}</span></div>
+
+                <div class='total'>{{currentTotal}}</div>
+
+                <div class='input' v-if='userInputLast'>Previous {{playerName}}'s input was
+                    <span>{{userInputLast}}</span>
+                </div>
+
+                <div v-show='!gameOver'>
+                    <label>Add a number to the total: <input type='text' v-model.number='userInput'
+                            v-on:keyup.enter='addNumber' /></label>
+                    <input class='submitButton' type='button' v-on:click='addNumber' value='Add number'></button>
+                </div>
+
+                <div v-show='gameOver' class='feedback' v-bind:class="{ user: win, computer: !win }">
+                    <div v-if='win'>Congratulations! You won! </div>
+                    <div v-else>Sorry, you lost.</div>
+                    <button class='submitButton' v-on:click='gameStarted'>Play again</button>
+                </div>
             </div>
 
-            <div v-if='gameOver' class='feedback' v-bind:class="{ user: win, computer: !win }">
-                <div v-if='win'>Congratulations! You won! </div>
-                <div v-else>Sorry, you lost.</div>
-                <button v-on:click='gameStarted'>Play again</button>
+            <div id='results' v-if='number'>
+                <div id=score>
+                    <h2>Score</h2>
+                    <div>{{playerName}}: {{userWins}}</div>
+                    <div>Computer: {{computerWins}}</div>
+                </div>
+                <div id='history'>
+                    <h2>History</h2>
+                    <game-results v-for='game in roundResults' v-bind:key='game.number' v-bind:number='game.number'
+                        v-bind:winner='game.winner' v-on:delete-result='deleteResult($event)'>
+                    </game-results>
+
+                </div>
+
             </div>
-
+            <button id='resetButton' v-if='number' v-on:click='resetResults'>Reset results</button>
         </div>
-        <div id='results' v-if='number'>
-            <p>Score</p>
-            <p>{{playerName}}: {{userWins}}</p>
-            <p>Computer: {{computerWins}}</p>
-            <p>History</p>
-            <game-results v-for='game in roundResults' v-bind:key='game.number' v-bind:number='game.number'
-                v-bind:winner='game.winner' v-on:delete-result='deleteResult($event)'>
-            </game-results>
-            <button v-on:click='resetResults'>Reset results</button>
-        </div>
-    </div>
 
-    <script id='game-results' type='text/x-template'>
-        <div>
+
+        <script id='game-results' type='text/x-template'>
+            <div>
             <ul>
                 <li>Game #: {{number}}</li>
                 <li>Winner: {{winner}}</li>
             </ul>
-            <button v-on:click='$emit("delete-result", number)'>Delete from history</button>
+            <button id='resetLine' v-on:click='$emit("delete-result", number)'>Delete from history</button>
         </div>
     </script>
+    </main>
 </body>
 
 </html>
