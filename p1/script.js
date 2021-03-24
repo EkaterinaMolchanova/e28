@@ -13,6 +13,7 @@ const Game = {
             win: "",
             roundResults: [],
             number: 0,
+            gameWinner: '',
             userWins: 0,
             computerWins: 0,
         };
@@ -24,7 +25,7 @@ const Game = {
                 this.win = this.lastInput === "computer";
                 this.roundResults.push({
                     number: this.number,
-                    winner: this.lastInput
+                    winner: this.gameWinner
                 });
                 if (this.lastInput === "computer") {
                     this.userWins++;
@@ -52,6 +53,7 @@ const Game = {
             this.userInputLast = this.userInput;
             this.lastInput = "user";
             this.userInput = "";
+            this.gameWinner = 'computer';
 
 
             if (this.currentTotal < 100) {
@@ -67,11 +69,17 @@ const Game = {
 
                 this.computerInputLast = this.computerInput;
                 this.lastInput = "computer";
+                this.gameWinner = this.playerName;
             }
         },
         deleteResult(number) {
             // console.log(this.game.number);
             this.roundResults = this.roundResults.filter(game => game.number != number)
+        },
+        resetResults() {
+            this.userWins = 0;
+            this.computerWins = 0;
+            this.roundResults = [];
         }
     },
 };
@@ -86,21 +94,7 @@ const GameResults = {
         },
         winner: {
             type: String,
-            required: true
         },
-        playerName: {
-            type: String,
-            required: true
-        },
-        userWins: {
-            type: Number,
-            required: true
-        },
-        computerWins: {
-            type: Number,
-            required: true
-        }
-
     },
     data() {
         return {}

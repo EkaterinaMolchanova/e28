@@ -18,6 +18,25 @@
             font-size: 3em;
             font-weight: 700;
         }
+
+        .feedback {
+            color: white;
+            font-weight: 700;
+            margin: 1em;
+        }
+
+        .user {
+            background-color: green;
+        }
+
+        .computer {
+            background-color: red;
+        }
+
+        .feedback div {
+            padding: 1em;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -45,9 +64,11 @@
             <div class='input' v-if='userInputLast'>Previous {{playerName}}'s input was <span>{{userInputLast}}</span>
             </div>
 
-            <label>Add a number to the total: <input type='text' v-model.number='userInput'
-                    v-on:keyup.enter='addNumber' /></label>
-            <input type='button' v-on:click='addNumber' value='Add number'></button>
+            <div v-if='!gameOver'>
+                <label>Add a number to the total: <input type='text' v-model.number='userInput'
+                        v-on:keyup.enter='addNumber' /></label>
+                <input type='button' v-on:click='addNumber' value='Add number'></button>
+            </div>
 
             <div v-if='gameOver' class='feedback' v-bind:class="{ user: win, computer: !win }">
                 <div v-if='win'>Congratulations! You won! </div>
@@ -56,32 +77,26 @@
             </div>
 
         </div>
-        <div id='results'>
-
-            <game-results v-bind:player-name='playerName' v-bind:user-wins='userWins'
-                v-bind:computer-wins='computerWins' v-for='game in roundResults' v-bind:key='game.number'
-                v-bind:number='game.number' v-bind:winner='game.winner' v-on:delete-result='deleteResult($event)'>
-
+        <div id='results' v-if='number'>
+            <p>Score</p>
+            <p>{{playerName}}: {{userWins}}</p>
+            <p>Computer: {{computerWins}}</p>
+            <p>History</p>
+            <game-results v-for='game in roundResults' v-bind:key='game.number' v-bind:number='game.number'
+                v-bind:winner='game.winner' v-on:delete-result='deleteResult($event)'>
             </game-results>
+            <button v-on:click='resetResults'>Reset results</button>
         </div>
     </div>
 
     <script id='game-results' type='text/x-template'>
-
         <div>
-        <p>Score</p>
-        
-            <p>{{playerName}}: {{userWins}}</p>
-            <p>Computer: {{computerWins}}</p>
-       
-
-        <p>History</p>
-        <ul>
-            <li>Game #: {{number}}</li>
-            <li>Winner: {{winner}}</li>
-        </ul>
-        <button v-on:click='$emit("delete-result", number)'>Delete from history</button>
-    </div>
+            <ul>
+                <li>Game #: {{number}}</li>
+                <li>Winner: {{winner}}</li>
+            </ul>
+            <button v-on:click='$emit("delete-result", number)'>Delete from history</button>
+        </div>
     </script>
 </body>
 
