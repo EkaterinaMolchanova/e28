@@ -32,8 +32,6 @@ const Game = {
                 } else {
                     this.computerWins++;
                 }
-
-                console.log(this.roundResults);
             }
         },
     },
