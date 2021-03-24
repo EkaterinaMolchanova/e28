@@ -55,12 +55,34 @@
                 <button v-on:click='gameStarted'>Play again</button>
             </div>
 
+        </div>
+        <div id='results'>
 
+            <game-results v-bind:player-name='playerName' v-bind:user-wins='userWins'
+                v-bind:computer-wins='computerWins' v-for='game in roundResults' v-bind:key='game.number'
+                v-bind:number='game.number' v-bind:winner='game.winner' v-on:delete-result='deleteResult($event)'>
 
-
-
+            </game-results>
         </div>
     </div>
+
+    <script id='game-results' type='text/x-template'>
+
+        <div>
+        <p>Score</p>
+        
+            <p>{{playerName}}: {{userWins}}</p>
+            <p>Computer: {{computerWins}}</p>
+       
+
+        <p>History</p>
+        <ul>
+            <li>Game #: {{number}}</li>
+            <li>Winner: {{winner}}</li>
+        </ul>
+        <button v-on:click='$emit("delete-result", number)'>Delete from history</button>
+    </div>
+    </script>
 </body>
 
 </html>
