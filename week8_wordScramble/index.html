@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <title>Week 5 Word Scramble</title>
+    <meta charset='utf-8'>
+    <link href=data:, rel=icon>
+
+    <script src='https://unpkg.com/vue@next'></script>
+    <script src='script.js' defer></script>
+
+    <style>
+        [v-cloak] {
+            display: none
+        }
+
+        select {
+            display: block;
+            margin: 1em;
+        }
+
+        .misteryWord {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .pass {
+            background-color: green;
+        }
+
+        .fail {
+            background-color: red;
+        }
+
+        .feedback {
+            font-weight: bold;
+            color: aliceblue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Word Scramble</h1>
+
+    <div id='app' v-cloak>
+
+        <div v-if='!gameStarted'>
+            <label for='playerName'>Enter your player name:
+                <input type='text' v-model.lazy='playerName' v-on:keyup.enter='startGame'>
+            </label>
+            <input type='button' v-on:click='startGame' value="Let's play!">
+        </div>
+
+        <div v-else>
+            <p>Game on, {{playerName}}!</p>
+            <p>Your mistery word is: <span class='misteryWord'>{{wordScrambled}}</span>
+            </p>
+            <p>Hint: <span class='hint'>{{hint}}</span>
+            </p>
+            <label for='guess'>Your guess: </label>
+            <input type='text' id='guess' v-model.trim='guess' v-on:keyup.enter='submitGuess'>
+            <button v-on:click='submitGuess'>Submit guess</button>
+        </div>
+
+        <div id='results'>
+            <game-feedback v-bind:class='{pass: correct, fail: !correct}' v-bind:correct='correct'
+                v-bind:feedback='feedback' v-on:scramble-word='scrambleWord($event)'>
+            </game-feedback>
+        </div>
+    </div>
+
+    <script id='game-feedback' type='text/x-template'>
+        <div v-if='feedback' class='feedback' v-bind:class="{ pass: correct, fail: !correct }">
+            <div v-if='correct'>You got it! Nice work. <button v-on:click='$emit("scramble-word",word)'>Play again</button></div>
+            <div v-else>Sorry, that’s not correct. Please try again.</div>
+        </div>
+
+
+    </script>
+
+</body>
+
+</html>
