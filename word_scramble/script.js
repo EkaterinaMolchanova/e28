@@ -48,25 +48,6 @@ let WorldScramble = {
     },
 }
 
-const GameFeedback = {
-    name: 'GameFeedback',
-    props: {
-        feedback: {
-            type: Boolean,
-            default: false
-        },
-        correct: {
-            type: Boolean,
-            default: false
-        },
-    },
-    data() {
-        return {}
-    },
-    template: '#game-feedback'
-}
-
-
 const app = Vue.createApp(WorldScramble);
 app.component('game-feedback', GameFeedback);
 app.mount('#app');
