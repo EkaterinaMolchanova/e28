@@ -1,3 +1,9 @@
+import {
+    createApp
+} from 'vue'
+import GameFeedback from './components/GameFeedback.vue'
+
+
 let WorldScramble = {
     data() {
         return {
@@ -48,25 +54,6 @@ let WorldScramble = {
     },
 }
 
-const GameFeedback = {
-    name: 'GameFeedback',
-    props: {
-        feedback: {
-            type: Boolean,
-            default: false
-        },
-        correct: {
-            type: Boolean,
-            default: false
-        },
-    },
-    data() {
-        return {}
-    },
-    template: '#game-feedback'
-}
-
-
-const app = Vue.createApp(WorldScramble);
+const app = createApp(WorldScramble);
 app.component('game-feedback', GameFeedback);
 app.mount('#app');

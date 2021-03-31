@@ -6,8 +6,8 @@
     <meta charset='utf-8'>
     <link href=data:, rel=icon>
 
-    <script src='https://unpkg.com/vue@next'></script>
-    <script src='script.js' defer></script>
+
+    <script src='js/app.js' defer></script>
 
     <style>
         [v-cloak] {
@@ -30,11 +30,6 @@
 
         .fail {
             background-color: red;
-        }
-
-        .feedback {
-            font-weight: bold;
-            color: aliceblue;
         }
     </style>
 
@@ -71,14 +66,7 @@
         </div>
     </div>
 
-    <script id='game-feedback' type='text/x-template'>
-        <div v-if='feedback' class='feedback' v-bind:class="{ pass: correct, fail: !correct }">
-            <div v-if='correct'>You got it! Nice work. <button v-on:click='$emit("scramble-word",word)'>Play again</button></div>
-            <div v-else>Sorry, that’s not correct. Please try again.</div>
-        </div>
 
-
-    </script>
 
 </body>
 
