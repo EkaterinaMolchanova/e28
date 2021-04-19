@@ -1,13 +1,14 @@
 <template>
   <div class="show-product">
     <div class="name">
-      <a v-bind:href="'/product/' + product.id">{{ product.name }}</a>
+      {{ product.name }}
     </div>
+    <img class="thumb" v-bind:src="imgSrc" />
 
-    <img class="thumb" v-bind:src="require('@/assets/images/products/' + product.id + '.jpg')" />
-
-    <!-- <div class="price">${{ product.price }}</div>
-    <p class="description">{{ product.description }}</p>-->
+    <div v-if="detailed">
+      <div class="price">${{ product.price }}</div>
+      <p class="description">{{ product.description }}</p>
+    </div>
   </div>
 </template>
 
@@ -15,22 +16,26 @@
 export default {
   props: {
     product: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+    detailed: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    imgSrc() {
+      try {
+        return require("@/assets/images/products/" + this.product.id + ".jpg");
+      } catch (e) {
+        return require("@/assets/images/products/image-not-available.jpg");
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.show-product {
-  border: 1px solid var(--silver);
-  text-align: center;
-  padding: 15px;
-  margin: 15px;
-  width: 30%;
-  min-width: 300px;
-}
-
 .name {
   height: 50px;
   font-size: 2rem;
