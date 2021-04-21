@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pacifico&display=swap');
+
+body {
+    margin: 0 20%;
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    width: 100%;
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    padding: 0.5em;
+}
+
+
+#logo {
+    margin: 1em 30%;
+    width: 40%;
+}
+
+
+/* ---------------------------------------------
+
+                   NAV                          
+
+----------------------------------------------- */
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a:link,
+nav ul li a:visited,
+nav ul li a:hover,
+nav ul li a:active {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    color: #0074D9;
+    font-weight: bold;
+}
+
+nav ul li a.router-link-active:link,
+nav ul li a.router-link-active:visited,
+nav ul li a.router-link-active:hover,
+nav ul li a.router-link-active:active {
+    text-decoration: none;
+    color: black;
+    background-color: #FFDC00;
+    cursor: inherit;
+}
