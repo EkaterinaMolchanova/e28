@@ -19,7 +19,10 @@
       </ul>
     </nav>
 
-    <router-view v-bind:posts="posts"></router-view>
+    <router-view
+      v-bind:posts="posts"
+      v-on:update-posts="uploadPosts"
+    ></router-view>
   </div>
 </template>
 

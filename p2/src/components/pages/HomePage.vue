@@ -7,11 +7,23 @@
       It's filled with lots of fun merchandise from pillows to Apple Watch
       bands. I hope you enjoy it!
     </p>
+    <show-random v-bind:posts="posts"> </show-random>
   </div>
 </template>
 
 <script>
-export default {};
+import ShowRandom from "@/components/ShowRandom.vue";
+export default {
+  components: {
+    "show-random": ShowRandom,
+  },
+  props: {
+    posts: {
+      type: Array,
+      default: null,
+    },
+  },
+};
 </script>
 
 <style></style>

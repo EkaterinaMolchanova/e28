@@ -1,24 +1,28 @@
-# p2
+Project 2
 
-## Project setup
-```
-npm install
-```
+By: Ekaterina Molchanova
+Production URL: http://e28p2.katemolchanova.me
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Pages summary
+List the "pages" of your application
 
-### Compiles and minifies for production
-```
-npm run build
-```
+SFC summary
+List the SFCs of your application
 
-### Lints and fixes files
-```
-npm run lint
-```
+Server interaction
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+List the features in your application that are persisting and retrieving data from the server
+
+- get the list of posts
+- write new post
+
+Outside resources
+
+- All auto-generated images and ideas for descriptions are taken from my shop at Society6.com https://society6.com/katemolchanova
+- All underlying drawings used in the merchandise are my own.
+- Ideas to fix HotModuleReload are taken from this thread https://github.com/vuejs/vue-cli/issues/2051 - that's the reason of rewritten 'serve' script in package.json.
+- https://clrs.cc/ for color palette
+
+Notes for instructor
+
+n/a

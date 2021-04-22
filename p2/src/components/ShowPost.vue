@@ -1,10 +1,7 @@
 <template>
   <div class="show-product">
     <h3>{{ post.title }}</h3>
-    <img
-      class="pic"
-      v-bind:src="require('@/assets/images/posts/' + this.post.sku + '-0.jpg')"
-    />
+    <img class="pic" v-bind:src="imgSrc" />
   </div>
 </template>
 
@@ -15,7 +12,16 @@ export default {
       type: Object,
     },
   },
+  computed: {
+    imgSrc() {
+      try {
+        return require("@/assets/images/posts/" + this.post.sku + "-0.jpg");
+      } catch (e) {
+        return require("@/assets/images/posts/image-not-found.jpg");
+      }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped></style>

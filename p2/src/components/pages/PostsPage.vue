@@ -2,6 +2,7 @@
   <div id="posts-page">
     <div id="posts">
       <router-link
+        class="show-post"
         v-for="post in posts"
         v-bind:to="'/post/' + post.id"
         v-bind:key="post.id"
@@ -29,7 +30,19 @@ export default {
 </script>
 
 <style>
+#posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.show-post {
+  flex: 0 0 45%;
+  margin: 15px 10px;
+}
+
 .pic {
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
 }
 </style>
