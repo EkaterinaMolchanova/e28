@@ -1,11 +1,17 @@
 <template>
   <div id="show-random">
-    <router-link
-      v-for="post in posts"
-      v-bind:to="'/post/' + post.id"
-      v-bind:key="post.id"
-      ><show-post v-bind:post="post"></show-post>
-    </router-link>
+    <h2>Featured posts</h2>
+    <div class="featured-posts">
+      <router-link
+        class="show-post"
+        v-for="post in randomPosts"
+        v-bind:to="'/post/' + post.id"
+        v-bind:key="post.id"
+      >
+        <show-post v-bind:post="post"></show-post>
+      </router-link>
+      <router-link v-bind:to="'/posts'">This way to see more...</router-link>
+    </div>
   </div>
 </template>
 
@@ -14,27 +20,63 @@ import ShowPost from "@/components/ShowPost.vue";
 
 export default {
   components: {
-    "show-post": ShowPost,
+    "show-post": ShowPost
   },
   props: {
     posts: {
       type: Array,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
-    ids() {
+    //select random posts for the home page, check that the random posts are unique
+    randomPosts() {
       let ids = [],
-        a;
-      for (let i = 0; i < 3; i++) {
-        a = Math.ceil(Math.random() * 12);
-        ids.push(a);
+        randomId;
+      for (let i = 0; ids.length < 3; i++) {
+        randomId = Math.ceil(Math.random() * 12);
+        if (!ids.includes(randomId)) {
+          ids.push(randomId);
+        }
       }
-      console.log(ids);
-      return ids;
-    },
-  },
+      var randomPosts = [];
+      this.posts.filter(post => {
+        if (ids.includes(post.id)) {
+          randomPosts.push(post);
+        }
+        return randomPosts;
+      });
+      return randomPosts;
+    }
+  }
 };
 </script>
 
-<style></style>
+<style scoped>
+#show-random {
+  border: 1px solid #ffdc00;
+  margin: 0 0 25px;
+}
+
+h2 {
+  background-color: #ffdc00;
+  text-align: center;
+  padding: 25px 0;
+  margin: 0;
+}
+.featured-posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.show-post {
+  flex: 0 0 30%;
+  margin: 15px 10px;
+}
+
+.pic {
+  width: 100%;
+  max-width: 350px;
+}
+</style>

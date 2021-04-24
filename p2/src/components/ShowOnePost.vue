@@ -1,13 +1,24 @@
 <template>
   <div id="show-one-post">
+    <!-- navigation for previous/next posts -->
+    <div class="local-nav">
+      <div class="previous-post" v-show="prevExist">
+        <router-link v-bind:to="'/post/' + (post.id - 1)">Previous</router-link>
+      </div>
+      <div class="next-post" v-show="nextExist">
+        <router-link v-bind:to="'/post/' + (post.id + 1)">Next</router-link>
+      </div>
+    </div>
+
+    <!-- display of the post data  -->
     <h1>{{ post.title }}</h1>
     <div class="one-post-contents">
       <div class="post-text">
         <div class="colors">Main colors: {{ post.color }}</div>
-        <div class="post-description">
-          {{ post.description }}
+        <div class="post-description">{{ post.description }}</div>
+        <div class="link-to-shop">
+          <a v-bind:href="post.link">{{ post.title }} on Society6</a>
         </div>
-        <a v-bind:href="post.link"> {{ post.title }} on Society6 </a>
       </div>
       <div class="post-images">
         <img class="main-pics" v-bind:src="imgSrc0" />
@@ -15,9 +26,7 @@
         <div v-if="picExist">
           <img
             class="main-pics"
-            v-bind:src="
-              require('@/assets/images/posts/' + this.post.sku + '-2.jpg')
-            "
+            v-bind:src="require('@/assets/images/posts/' + post.sku + '-2.jpg')"
           />
         </div>
       </div>
@@ -30,8 +39,12 @@ export default {
   props: {
     post: {
       type: Object,
-      default: null,
+      default: null
     },
+    posts: {
+      type: Array,
+      default: null
+    }
   },
   data() {
     return {};
@@ -60,11 +73,38 @@ export default {
         return false;
       }
     },
-  },
+    //previous and next posts. -2 and 0 correction is made because the items in array start from 0 and ids from 1
+    prevExist() {
+      return this.posts[this.post.id - 2];
+    },
+    nextExist() {
+      return this.posts[this.post.id];
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
+.local-nav {
+  margin: 1em 0;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.previous-post {
+  float: left;
+  clear: left;
+}
+
+.next-post {
+  float: right;
+  clear: right;
+}
+
+h1 {
+  clear: both;
+}
+
 .one-post-contents {
   display: flex;
 }
@@ -80,6 +120,10 @@ export default {
   font-weight: bold;
   font-size: 0.9em;
   margin: 1em 0;
+}
+
+.link-to-shop {
+  margin: 15px 0;
 }
 
 .main-pics {

@@ -13,7 +13,6 @@ import HomePage from '@/components/pages/HomePage.vue';
 import PostsPage from '@/components/pages/PostsPage.vue';
 import PostPage from '@/components/pages/PostPage.vue';
 import AddPostPage from '@/components/pages/AddPostPage.vue';
-import CategoriesPage from '@/components/pages/CategoriesPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -29,10 +28,6 @@ const router = createRouter({
             path: '/post/:id',
             component: PostPage,
             props: true,
-        },
-        {
-            path: '/categories',
-            component: CategoriesPage
         },
         {
             path: '/post/new',

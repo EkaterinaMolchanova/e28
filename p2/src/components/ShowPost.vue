@@ -1,5 +1,5 @@
 <template>
-  <div class="show-product">
+  <div class="show-post">
     <h3>{{ post.title }}</h3>
     <img class="pic" v-bind:src="imgSrc" />
   </div>
@@ -9,8 +9,8 @@
 export default {
   props: {
     post: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   computed: {
     imgSrc() {
@@ -19,9 +19,14 @@ export default {
       } catch (e) {
         return require("@/assets/images/posts/image-not-found.jpg");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h3 {
+  font-family: "Montserrat", serif;
+  font-weight: normal;
+}
+</style>

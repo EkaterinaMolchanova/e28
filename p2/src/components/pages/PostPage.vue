@@ -8,7 +8,7 @@
       </p>
     </div>
     <div v-else-if="post">
-      <show-one-post v-bind:post="post"></show-one-post>
+      <show-one-post v-bind:post="post" v-bind:posts="posts"></show-one-post>
     </div>
   </div>
 </template>
