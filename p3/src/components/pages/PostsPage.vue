@@ -6,7 +6,7 @@
         v-on:new-color="setUserColor($event)"
       ></category-and-color>
     </div>
-    <div id="posts">
+    <div class="posts">
       <router-link
         class="show-post"
         v-for="post in selectPosts"
@@ -14,6 +14,7 @@
         v-bind:key="post.id"
       >
         <show-post v-bind:post="post"></show-post>
+        <fav-buttons v-bind:post="post"></fav-buttons>
       </router-link>
     </div>
   </div>
@@ -22,12 +23,14 @@
 <script>
 import ShowPost from "@/components/ShowPost.vue";
 import CategoryAndColor from "@/components/CategoryAndColor.vue";
+import FavButtons from "@/components/FavButtons.vue";
 
 export default {
   name: "PostsPage",
   components: {
     "show-post": ShowPost,
     "category-and-color": CategoryAndColor,
+    "fav-buttons": FavButtons,
   },
   data() {
     return {
@@ -57,27 +60,4 @@ export default {
 };
 </script>
 
-<style>
-#posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 10px;
-  padding: 10px;
-}
-
-.show-post {
-  flex: 0 0 45%;
-  margin: 15px 10px;
-}
-
-h3 {
-  height: 2.2em;
-  vertical-align: bottom;
-}
-
-.pic {
-  width: 100%;
-  max-width: 350px;
-}
-</style>
+<style></style>

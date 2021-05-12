@@ -7,7 +7,7 @@ body {
     font-family: 'Raleway', serif;
     font-size: 1em;
     line-height: 1.5em;
-
+    text-align: center;
 
 }
 
@@ -16,7 +16,6 @@ h1 {
     width: 100%;
     margin: 0;
     font-size: 2em;
-    text-align: center;
     padding: 0.5em;
 }
 
@@ -27,6 +26,21 @@ h1 {
     max-width: 250px;
 }
 
+footer {
+    background-color: #000000;
+    position: fixed;
+    bottom: 0;
+    width: 60%;
+    margin-top: 1em;
+}
+
+footer p {
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    margin: 0;
+}
 
 /* ---------------------------------------------
 
@@ -35,7 +49,7 @@ h1 {
 ----------------------------------------------- */
 
 nav {
-    width: 80%;
+    width: 100%;
     margin: auto;
     text-align: center;
 }
@@ -72,9 +86,46 @@ nav ul li a.router-link-active:active {
     cursor: inherit;
 }
 
+#loginLink,
+#signupLink {
+    background-color: #0074D9;
+    padding: 0;
+
+}
+
+#loginLink {
+    padding-left: 20px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    margin-left: 3em;
+}
+
+#signupLink {
+    padding-right: 20px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#loginLink a,
+#signupLink a {
+    background-color: #0074D9;
+    color: #ffffff;
+    margin: 0;
+    padding: 10px 0;
+}
+
+#signupLink a::before {
+    content: " | ";
+    padding: 0.5em;
+}
+
+
+
 
 /* ------------------------------
-OTHER
+
+            LINKS
+
 --------------------------------- */
 
 a:link,
@@ -87,25 +138,109 @@ a:active {
     font-weight: bold;
 }
 
+.noUser {
+    padding: 8em;
+}
+
+/* -----------------------------
+
+            FORMS 
+
+----------------------------- */
+
+textarea,
+input[type="text"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    border: 1px solid #dddddd;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 20px 0 0;
+}
+
+label#forTitle,
+label#forSKU,
+label#forColor,
+label#forLink,
+label#forDescription {
+    display: block;
+    margin: 20px 0 0;
+}
+
+label#forCategoryPersonal {
+    display: block;
+    margin: 0;
+}
+
+.formHelp {
+    color: #aaaaaa;
+    text-align: left;
+}
+
+.formHelp:first-of-type {
+    display: block;
+    text-align: center;
+}
+
+.positiveFeedback {
+    color: #2ecc40;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.negativeFeedback {
+    color: #ff4136;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 0 1rem 0;
+}
+
 button {
     background-color: #0074D9;
     font-size: 0.9em;
-    margin-top: 5px;
+    margin: 25px 0;
     border-radius: 5px;
     border: 0;
-    padding: 5px;
+    padding: 10px;
     color: white;
     cursor: pointer;
 }
 
-footer {
-    background-color: #000000;
+button:disabled {
+    background-color: #dddddd;
 }
 
-footer p {
-    color: #ffffff;
-    text-align: center;
-    font-size: 0.8em;
-    padding: 0.5em;
-    margin: 0;
+/* ------------------------------
+
+            POSTS DISPLAY
+
+--------------------------------- */
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.show-post {
+    flex: 0 0 45%;
+    margin: 15px 10px;
+}
+
+h3 {
+    height: 2.2em;
+    vertical-align: bottom;
+}
+
+.pic {
+    width: 100%;
+    max-width: 350px;
 }

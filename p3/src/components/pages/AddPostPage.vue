@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="addPostPage">
     <h1>Create new post</h1>
 
     <div id="form">
@@ -9,31 +9,36 @@
       <input type="text" v-model="post.title" id="title" v-on:blur="validate" />
       <small class="formHelp">Min 10 characters</small>
       <!-- give feedback in case of errors -->
-      <div
-        v-if="errors && errors.title"
-        class="negativeFeedback"
-      >The title is required and should be at least 10 characters long.</div>
+      <div v-if="errors && errors.title" class="negativeFeedback">
+        The title is required and should be at least 10 characters long.
+      </div>
 
       <label for="sku" id="forSKU">SKU:</label>
       <input type="text" v-model="post.sku" id="sku" v-on:blur="validate" />
-      <small class="formHelp">SKU is the name of the item in Society6 and should be unique</small>
-      <div
-        v-if="errors && errors.sku"
-        class="negativeFeedback"
-      >The item's SKU is required and should be unique.</div>
+      <small class="formHelp"
+        >SKU is the name of the item in Society6 and should be unique</small
+      >
+      <div v-if="errors && errors.sku" class="negativeFeedback">
+        The item's SKU is required and should be unique.
+      </div>
 
-      <label for="color" id="forColor">Main colors (separate with commas):</label>
+      <label for="color" id="forColor"
+        >Main colors (separate with commas):</label
+      >
       <input type="text" v-model="post.color" id="color" v-on:blur="validate" />
-      <small class="formHelp">Please add main colors, separated by commas</small>
-      <div v-if="errors && errors.color" class="negativeFeedback">The main colors field is required.</div>
+      <small class="formHelp"
+        >Please add main colors, separated by commas</small
+      >
+      <div v-if="errors && errors.color" class="negativeFeedback">
+        The main colors field is required.
+      </div>
 
       <label for="link" id="forLink">Link to the Society6 item:</label>
       <input type="text" v-model="post.link" id="link" v-on:blur="validate" />
       <small class="formHelp">Please add a unique link</small>
-      <div
-        v-if="errors && errors.link"
-        class="negativeFeedback"
-      >The link to the item at Society6.com is required and should be unique.</div>
+      <div v-if="errors && errors.link" class="negativeFeedback">
+        The link to the item at Society6.com is required and should be unique.
+      </div>
 
       <label for="categoryHome" class="form-radio" id="forCategoryHome">
         <input
@@ -45,7 +50,7 @@
         />
         Home and Outdoor
       </label>
-      <label for="categoryPersonal" class="form-radio">
+      <label for="categoryPersonal" class="form-radio" id="forCategoryPersonal">
         <input
           type="radio"
           v-model="post.category"
@@ -55,10 +60,16 @@
         />
         Personal items
       </label>
-      <div v-if="errors && errors.category" class="negativeFeedback">Please choose the category.</div>
+      <div v-if="errors && errors.category" class="negativeFeedback">
+        Please choose the category.
+      </div>
 
       <label for="description" id="forDescription">Description</label>
-      <textarea id="description" v-model="post.description" v-on:blur="validate"></textarea>
+      <textarea
+        id="description"
+        v-model="post.description"
+        v-on:blur="validate"
+      ></textarea>
       <small class="formHelp">Min 50 and max 500 characters</small>
       <div v-if="errors && errors.description" class="negativeFeedback">
         The description is required and should be at least 50 and up to 500
@@ -66,9 +77,13 @@
       </div>
     </div>
 
-    <div v-if="showConfirmation" class="positiveFeedback">New post was added</div>
+    <div v-if="showConfirmation" class="positiveFeedback">
+      New post was added
+    </div>
 
-    <button v-on:click="createPost">Create new post</button>
+    <button v-on:click="createPost" v-bind:disabled="errors">
+      Create new post
+    </button>
   </div>
 </template>
 
@@ -87,10 +102,11 @@ export default {
         color: "",
         category: "",
         link: "",
-        description: ""
-      }
+        description: "",
+      },
     };
   },
+
   methods: {
     validate() {
       let validator = new Validator(this.post, {
@@ -98,7 +114,7 @@ export default {
         sku: "required|alpha_dash",
         color: "required",
         link: "required",
-        description: "required|between:50, 500"
+        description: "required|between:50, 500",
       });
 
       if (validator.fails()) {
@@ -112,7 +128,7 @@ export default {
 
     createPost() {
       if (this.validate()) {
-        axios.post("/post", this.post).then(response => {
+        axios.post("/post", this.post).then((response) => {
           if (response.data.errors) {
             this.errors = response.data.errors;
             this.showConfirmation = false;
@@ -133,62 +149,13 @@ export default {
           }
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-textarea,
-input[type="text"] {
-  display: block;
-  width: 100%;
-  font-size: 1.2rem;
-  border: 1px solid #dddddd;
-}
-
-label {
-  display: block;
-  margin: 0;
-}
-
-label#forTitle,
-label#forSKU,
-label#forColor,
-label#forLink,
-label#forDescription {
-  display: block;
-  margin: 20px 0 0;
-}
-label#forCategoryHome {
-  display: block;
-  margin: 20px 0 0;
-}
-
-.formHelp {
-  color: #aaaaaa;
-}
-
-.formHelp:first-of-type {
-  display: block;
-  text-align: center;
-}
-
-.positiveFeedback {
-  color: #2ecc40;
-  font-weight: bold;
-  margin: 1rem 0;
-}
-
-.negativeFeedback {
-  color: #ff4136;
-  font-size: 0.8em;
-  font-weight: bold;
-  font-style: italic;
-  margin: 0 0 1rem 0;
-}
-
-button {
-  margin: 25px 0;
+#addPostPage {
+  padding-bottom: 50px;
 }
 </style>

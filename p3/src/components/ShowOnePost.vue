@@ -12,6 +12,8 @@
 
     <!-- display of the post data  -->
     <h1>{{ post.title }}</h1>
+    <fav-buttons v-bind:post="post"></fav-buttons>
+
     <div class="one-post-contents">
       <div class="post-text">
         <div class="colors">Main colors: {{ post.color }}</div>
@@ -35,7 +37,12 @@
 </template>
 
 <script>
+import FavButtons from "@/components/FavButtons.vue";
+
 export default {
+  components: {
+    "fav-buttons": FavButtons,
+  },
   props: {
     post: {
       type: Object,
@@ -46,10 +53,6 @@ export default {
     return {};
   },
   computed: {
-    // post() {
-    //   return this.$store.getters.getPostById(this.id);
-    // },
-
     posts() {
       return this.$store.state.posts;
     },

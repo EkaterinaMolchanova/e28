@@ -25,8 +25,12 @@ const routes = [
         }
     },
     {
-        path: '/account',
-        component: () => import('@/components/pages/AccountPage.vue')
+        path: '/login',
+        component: () => import('@/components/pages/LoginPage.vue')
+    },
+    {
+        path: '/signup',
+        component: () => import('@/components/pages/SignupPage.vue')
     },
     {
         path: '/favorite',
@@ -61,10 +65,11 @@ router.beforeEach(async (to) =>
         let authUser = await store.dispatch('authUser');
         if (authUser !== null) {
             return decide(store.state.user)
-        } else {
-            return decide(store.state.user)
         }
+    } else {
+        return decide(store.state.user)
     }
+
 });
 
 export { router };

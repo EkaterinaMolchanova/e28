@@ -3,7 +3,7 @@ import { axios } from "@/common/app.js";
 
 // Only load the createLogger plugin when in development mode
 const debug = process.env.NODE_ENV !== 'production';
-const plugins = debug ? [createLogger({})] : [];
+const plugins = debug && 1 == 2 ? [createLogger({})] : [];
 
 export const store = createStore({
     plugins,

@@ -52,7 +52,7 @@ export default {
 <style scoped>
 #show-random {
   border: 1px solid #ffdc00;
-  margin: 0 0 25px;
+  margin: 0 0 50px;
 }
 
 h2 {

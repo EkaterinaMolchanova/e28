@@ -77,6 +77,7 @@ li {
   text-align: left;
 }
 label {
+  display: inline;
   margin: 0 10px;
 }
 

@@ -1,22 +1,37 @@
 <template>
   <div>
-    <img alt="Kate Molchanova blog logo" id="logo" src="@/assets/images/logo_full_black.png" />
+    <img
+      alt="Kate Molchanova blog logo"
+      id="logo"
+      src="@/assets/images/logo_full_black.png"
+    />
 
     <nav>
       <ul>
         <li>
-          <router-link v-for="link in links" v-bind:key="link" v-bind:to="paths[link]">{{ link }}</router-link>
+          <router-link
+            v-for="link in links"
+            v-bind:key="link"
+            v-bind:to="paths[link]"
+            >{{ link }}</router-link
+          >
         </li>
-        <li v-if="!user">
-          <router-link v-bind:to="'/account'">Log in</router-link>
+        <li v-if="!user" id="loginLink">
+          <router-link v-bind:to="'/login'">Log in</router-link>
         </li>
-        <li v-if="user">
-          <button v-on:click="logout">Logout</button>
+        <li v-if="!user" id="signupLink">
+          <router-link v-bind:to="'/signup'">Sign up</router-link>
+        </li>
+        <li v-if="user" id="logoutLink">
+          <logout></logout>
         </li>
       </ul>
     </nav>
 
-    <router-view v-bind:posts="posts" v-on:update-posts="uploadPosts"></router-view>
+    <router-view
+      v-bind:posts="posts"
+      v-on:update-posts="uploadPosts"
+    ></router-view>
 
     <footer>
       <p>2021 Ekaterina Molchanova</p>
@@ -25,9 +40,13 @@
 </template>
 
 <script>
+import Logout from "@/components/Logout.vue";
+
 export default {
   name: "App",
-
+  components: {
+    logout: Logout,
+  },
   data() {
     return {
       posts: [],
@@ -39,8 +58,8 @@ export default {
         home: "/",
         "all posts": "/posts",
         "create new post": "/post/new",
-        favorites: "/favorite"
-      }
+        favorites: "/favorite",
+      },
     };
   },
   mounted() {
@@ -49,13 +68,13 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
-    }
+    },
   },
   methods: {
     uploadPosts() {
       this.$store.dispatch("fetchPosts");
-    }
-  }
+    },
+  },
 };
 </script>
 

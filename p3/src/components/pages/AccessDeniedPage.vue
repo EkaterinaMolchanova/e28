@@ -1,5 +1,8 @@
 <template>
-  <h2>Access denied</h2>
+  <div class="noUser">
+    Please <router-link v-bind:to="'/login'">log in </router-link> or
+    <router-link v-bind:to="'/signup'">sign up </router-link> to see this page
+  </div>
 </template>
 
 <script>

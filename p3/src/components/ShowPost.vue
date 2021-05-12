@@ -1,5 +1,5 @@
 <template>
-  <div class="show-post">
+  <div>
     <h3>{{ post.title }}</h3>
     <img class="pic" v-bind:src="imgSrc" />
   </div>
@@ -7,10 +7,11 @@
 
 <script>
 export default {
+  component: {},
   props: {
     post: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   computed: {
     imgSrc() {
@@ -19,8 +20,8 @@ export default {
       } catch (e) {
         return require("@/assets/images/posts/image-not-found.jpg");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
