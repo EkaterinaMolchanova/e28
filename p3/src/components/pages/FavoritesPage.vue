@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="user">
-      <h1>Hi, {{ user.name }}!</h1>
+      <h1 data-test="welcome-message">Hi, {{ user.name }}!</h1>
 
       <div id="favorites">
         <h2>Your Favorites</h2>

@@ -8,7 +8,7 @@
         v-bind:to="'/post/' + post.id"
         v-bind:key="post.id"
       >
-        <show-post v-bind:post="post"></show-post>
+        <show-post v-bind:post="post" data-test="random-product"></show-post>
       </router-link>
       <router-link v-bind:to="'/posts'">This way to see more...</router-link>
     </div>

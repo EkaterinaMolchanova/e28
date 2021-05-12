@@ -9,7 +9,12 @@
       <div>
         <label>
           Email:
-          <input type="text" v-model="data.email" v-on:blur="validate" />
+          <input
+            type="text"
+            v-model="data.email"
+            v-on:blur="validate"
+            data-test="email-input"
+          />
         </label>
         <div v-if="errors && errors.email" class="negativeFeedback">
           Please check your email.
@@ -18,7 +23,12 @@
       <div>
         <label>
           Password:
-          <input type="password" v-model="data.password" v-on:blur="validate" />
+          <input
+            type="password"
+            v-model="data.password"
+            v-on:blur="validate"
+            data-test="password-input"
+          />
         </label>
         <div v-if="errors && errors.password" class="negativeFeedback">
           Please check your password.
@@ -35,7 +45,12 @@
         </li>
       </ul>
 
-      <button v-on:click="login" v-bind:disabled="errors" id="loginButton">
+      <button
+        v-on:click="login"
+        v-bind:disabled="errors"
+        id="loginButton"
+        data-test="login-button"
+      >
         Login
       </button>
     </div>

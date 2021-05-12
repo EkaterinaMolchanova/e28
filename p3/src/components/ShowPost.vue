@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h3>{{ post.title }}</h3>
-    <img class="pic" v-bind:src="imgSrc" />
+    <h3 data-test="post-title">{{ post.title }}</h3>
+    <img
+      class="pic"
+      v-bind:src="imgSrc"
+      v-bind:data-test="'post-image-' + post.sku"
+    />
   </div>
 </template>
 

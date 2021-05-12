@@ -6,7 +6,13 @@
       <small class="formHelp">All fields are required</small>
 
       <label for="title" id="forTitle">Title:</label>
-      <input type="text" v-model="post.title" id="title" v-on:blur="validate" />
+      <input
+        type="text"
+        v-model="post.title"
+        id="title"
+        v-on:blur="validate"
+        data-test="post-title-input"
+      />
       <small class="formHelp">Min 10 characters</small>
       <!-- give feedback in case of errors -->
       <div v-if="errors && errors.title" class="negativeFeedback">
@@ -14,7 +20,13 @@
       </div>
 
       <label for="sku" id="forSKU">SKU:</label>
-      <input type="text" v-model="post.sku" id="sku" v-on:blur="validate" />
+      <input
+        type="text"
+        v-model="post.sku"
+        id="sku"
+        v-on:blur="validate"
+        data-test="post-sku-input"
+      />
       <small class="formHelp"
         >SKU is the name of the item in Society6 and should be unique</small
       >
@@ -25,7 +37,13 @@
       <label for="color" id="forColor"
         >Main colors (separate with commas):</label
       >
-      <input type="text" v-model="post.color" id="color" v-on:blur="validate" />
+      <input
+        type="text"
+        v-model="post.color"
+        id="color"
+        v-on:blur="validate"
+        data-test="post-color-input"
+      />
       <small class="formHelp"
         >Please add main colors, separated by commas</small
       >
@@ -34,7 +52,13 @@
       </div>
 
       <label for="link" id="forLink">Link to the Society6 item:</label>
-      <input type="text" v-model="post.link" id="link" v-on:blur="validate" />
+      <input
+        type="text"
+        v-model="post.link"
+        id="link"
+        v-on:blur="validate"
+        data-test="post-link-input"
+      />
       <small class="formHelp">Please add a unique link</small>
       <div v-if="errors && errors.link" class="negativeFeedback">
         The link to the item at Society6.com is required and should be unique.
@@ -47,6 +71,7 @@
           name="category"
           id="categoryHome"
           value="home and outdoor"
+          data-test="post-category-radio"
         />
         Home and Outdoor
       </label>
@@ -69,6 +94,7 @@
         id="description"
         v-model="post.description"
         v-on:blur="validate"
+        data-test="post-description-textarea"
       ></textarea>
       <small class="formHelp">Min 50 and max 500 characters</small>
       <div v-if="errors && errors.description" class="negativeFeedback">
@@ -77,11 +103,19 @@
       </div>
     </div>
 
-    <div v-if="showConfirmation" class="positiveFeedback">
+    <div
+      v-if="showConfirmation"
+      class="positiveFeedback"
+      data-test="post-added-confirmation"
+    >
       New post was added
     </div>
 
-    <button v-on:click="createPost" v-bind:disabled="errors">
+    <button
+      v-on:click="createPost"
+      v-bind:disabled="errors"
+      data-test="add-post-button"
+    >
       Create new post
     </button>
   </div>

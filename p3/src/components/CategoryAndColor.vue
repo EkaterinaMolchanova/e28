@@ -24,7 +24,10 @@
           <label for="any">any</label>
         </li>
       </ul>
-      <button v-on:click="$emit('new-color', selectedColor)">
+      <button
+        v-on:click="$emit('new-color', selectedColor)"
+        data-test="color-button"
+      >
         Select color
       </button>
     </div>

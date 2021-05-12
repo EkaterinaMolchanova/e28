@@ -13,6 +13,7 @@
             v-for="link in links"
             v-bind:key="link"
             v-bind:to="paths[link]"
+            v-bind:data-test="'nav-link-' + link"
             >{{ link }}</router-link
           >
         </li>
