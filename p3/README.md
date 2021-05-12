@@ -26,4 +26,4 @@ Only logged in users cah access "Create new post" page and use their saved favor
 
 ## E2E Testing screenshot
 
-![My app passing E2E tests]
+![My app passing E2E tests](https://github.com/EkaterinaMolchanova/e28/blob/main/p3/e2e-tests.png)
